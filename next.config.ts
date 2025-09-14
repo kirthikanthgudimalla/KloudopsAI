@@ -1,11 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Optimize images for Vercel
+  // Enable static export for Netlify
+  output: 'export',
+  
+  // Disable image optimization for static export
   images: {
-    domains: ['kloudops-ai.com', 'www.kloudops-ai.com'],
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
   },
+  
+  // Enable trailing slash for better static hosting
+  trailingSlash: true,
+  
+  // Set output directory
+  distDir: 'out',
   
   // Security headers
   async headers() {

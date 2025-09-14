@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NEXTAUTH_URL = "https://kloudops-ai.com"
+  NEXTAUTH_SECRET = "kloudops-ai-netlify-secret-key-for-production-deployment"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm run dev"
+  port = 3000
