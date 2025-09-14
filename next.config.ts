@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable static export for Netlify
+  // Enable static export for GitHub Pages
   output: 'export',
   
   // Disable image optimization for static export
@@ -12,35 +12,14 @@ const nextConfig: NextConfig = {
   // Enable trailing slash for better static hosting
   trailingSlash: true,
   
-  // Set output directory
+  // Set output directory for GitHub Pages
   distDir: 'out',
   
-  // Security headers
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-        ],
-      },
-    ];
-  },
+  // Base path for GitHub Pages (remove if using custom domain)
+  basePath: '',
+  
+  // Asset prefix for GitHub Pages
+  assetPrefix: '',
 };
 
 export default nextConfig;
