@@ -10,6 +10,7 @@ import User from '@/models/User';
 // ============================================================================
 
 // ❌ SLOWER - Returns full Mongoose documents with methods
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getUSERsSlow() {
   return await User.find({ userType: 'devops-user' });
   // Each doc: ~50-100 bytes overhead
@@ -26,6 +27,7 @@ async function getUsersFast() {
 // ============================================================================
 
 // ❌ SLOWER - Returns all fields (including password hash)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getAllFieldsSlow(email: string) {
   return await User.findOne({ email });
   // Returns: name, email, password, userType, company, skills, bio, avatar, etc.
@@ -41,6 +43,7 @@ async function getSelectedFieldsFast(email: string) {
 }
 
 // ❌ Also slower - Returns all but password (still returns other sensitive data)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getAllButPasswordSlow(email: string) {
   return await User.findOne({ email }).select('-password');
 }
@@ -50,6 +53,7 @@ async function getAllButPasswordSlow(email: string) {
 // ============================================================================
 
 // ❌ DANGEROUS - Returns ALL users (memory overflow with 100K+ users)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getAllUsersDangerous() {
   return await User.find().lean();
   // With 100K users, this loads ~100-200MB into memory
@@ -135,6 +139,7 @@ async function getUserStatistics() {
 // ============================================================================
 
 // ❌ SLOW - Individual operations (N+1 problem)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function addSkillsSlow(userId: string, newSkills: string[]) {
   for (const skill of newSkills) {
     await User.updateOne(
@@ -282,6 +287,7 @@ async function searchFreelancers(skillFilter?: string, page: number = 1) {
  *
  * 2. Add logging to your app:
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function logSlowQueries(operation: string, startTime: number) {
   const duration = Date.now() - startTime;
   if (duration > 1000) {
@@ -292,6 +298,7 @@ async function logSlowQueries(operation: string, startTime: number) {
 /**
  * 3. Monitor connection pool:
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function logConnectionPoolStats() {
   // Add this to your monitoring/health check endpoint
   const poolStats = {
