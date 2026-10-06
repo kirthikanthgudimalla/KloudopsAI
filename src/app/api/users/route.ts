@@ -20,8 +20,8 @@ export async function GET(req: NextRequest) {
 
     // Get query parameters
     const { searchParams } = new URL(req.url);
-    const page = searchParams.get('page');
-    const limit = searchParams.get('limit');
+    const page = searchParams.get('page') ?? undefined;
+    const limit = searchParams.get('limit') ?? undefined;
     const userType = searchParams.get('userType');
 
     // Parse pagination params
