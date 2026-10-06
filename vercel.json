@@ -4,10 +4,6 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
-  "env": {
-    "NEXTAUTH_URL": "https://kloudops-ai.com",
-    "NEXTAUTH_SECRET": "@nextauth_secret"
-  },
   "functions": {
     "src/app/api/**/*.ts": {
       "maxDuration": 30
