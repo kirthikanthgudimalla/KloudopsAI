@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
     const cacheKey = cacheKeys.usersByType(userType || 'all', pageNum);
 
     // Check cache first
-    let cachedResult = cache.get(cacheKey);
+    const cachedResult = cache.get(cacheKey);
     if (cachedResult) {
       return NextResponse.json({
         ...cachedResult,
@@ -90,6 +90,7 @@ export async function GET(req: NextRequest) {
  * DELETE /api/users/cache - Clear users cache
  * Admin only endpoint
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function DELETE(req: NextRequest) {
   try {
     // TODO: Add authentication check for admin only

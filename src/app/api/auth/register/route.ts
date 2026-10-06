@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Prepare user data
-    const userData: any = {
+    const userData: Record<string, unknown> = {
       name: name.trim(),
       email: email.toLowerCase().trim(),
       password,
@@ -83,12 +83,14 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Registration error:', error);
 
     // Handle mongoose validation errors
-    if (error.name === 'ValidationError') {
-      const validationErrors = Object.values(error.errors).map((err: any) => err.message);
+    if (error instanceof Error && 'name' in error && error.name === 'ValidationError') {
+      const validationErrors = Object.values((error as Record<string, unknown>).errors || {}).map((err: unknown) => 
+        err instanceof Error ? err.message : String(err)
+      );
       return NextResponse.json(
         { error: 'Validation failed', details: validationErrors },
         { status: 400 }
@@ -96,7 +98,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Handle duplicate key error (in case of race condition)
-    if (error.code === 11000) {
+    if (error instanceof Error && 'code' in error && error.code === 11000) {
       return NextResponse.json(
         { error: 'User with this email already exists' },
         { status: 409 }
