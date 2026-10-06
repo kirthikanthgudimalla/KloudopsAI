@@ -9,8 +9,5 @@
       "maxDuration": 30
     }
   },
-  "regions": ["iad1"],
-  "github": {
-    "autoAlias": false
-  }
+  "regions": ["iad1"]
 }
