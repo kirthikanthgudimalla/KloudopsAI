@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { 
   User, 
   Settings, 
@@ -66,10 +67,12 @@ export default function Dashboard() {
                 <Bell className="h-5 w-5" />
               </button>
               <div className="flex items-center space-x-2">
-                <img
+                <Image
                   className="h-8 w-8 rounded-full"
-                  src={userData.avatar}
+                  src={userData.avatar || '/default-avatar.png'}
                   alt={userData.name}
+                  width={32}
+                  height={32}
                 />
                 <span className="text-sm font-medium text-gray-900">{userData.name}</span>
               </div>
@@ -84,10 +87,12 @@ export default function Dashboard() {
           <div className="lg:w-64 flex-shrink-0">
             <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-white/20">
               <div className="text-center mb-6">
-                <img
+                <Image
                   className="h-20 w-20 rounded-full mx-auto mb-4"
-                  src={userData.avatar}
+                  src={userData.avatar || '/default-avatar.png'}
                   alt={userData.name}
+                  width={80}
+                  height={80}
                 />
                 <h3 className="text-lg font-semibold text-gray-900">{userData.name}</h3>
                 <p className="text-sm text-gray-600 capitalize">
@@ -158,7 +163,7 @@ export default function Dashboard() {
                     Welcome back, {userData.name}!
                   </h1>
                   <p className="text-gray-600 mt-1">
-                    Here's what's happening with your account today.
+                    Here&apos;s what&apos;s happening with your account today.
                   </p>
                 </div>
 

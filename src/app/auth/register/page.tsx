@@ -70,8 +70,8 @@ function RegisterForm() {
       alert('Registration successful! You can now log in to your account.');
       // Redirect to login page
       window.location.href = '/auth/login';
-    } catch (err: any) {
-      setError(err.message || 'Registration failed. Please try again.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Registration failed. Please try again.');
     } finally {
       setIsLoading(false);
     }

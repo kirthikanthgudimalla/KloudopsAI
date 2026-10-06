@@ -14,6 +14,7 @@ interface CacheEntry<T> {
 }
 
 class MemoryCache {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private cache: Map<string, CacheEntry<any>> = new Map();
   private maxSize: number = 100; // Maximum cache entries
   private ttl: number = 5 * 60 * 1000; // Default 5 minutes

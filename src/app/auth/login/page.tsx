@@ -48,8 +48,8 @@ export default function Login() {
       alert('Login successful! Redirecting to dashboard...');
       // Redirect to dashboard
       window.location.href = '/dashboard';
-    } catch (err: any) {
-      setError(err.message || 'Invalid email/username or password. Please try again.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Invalid email/username or password. Please try again.');
     } finally {
       setIsLoading(false);
     }
