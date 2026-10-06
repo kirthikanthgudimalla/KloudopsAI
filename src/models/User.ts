@@ -69,7 +69,6 @@ const userSchema = new Schema<IUser>({
 });
 
 // Index for faster queries
-userSchema.index({ email: 1 });
 userSchema.index({ userType: 1 });
 userSchema.index({ createdAt: -1 });
 
